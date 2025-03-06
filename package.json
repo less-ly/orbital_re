@@ -1,7 +1,7 @@
 {
   "name": "Orbital RE",
   "author": "less-ly",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "keywords": ["pebble-watchface"],
   "private": true,
   "dependencies": {},
@@ -15,6 +15,10 @@
     "projectType": "rocky",
     "sdkVersion": "3",
     "enableMultiJS": true,
+    "targetPlatforms": [
+      "basalt",
+      "chalk"
+    ],
     "watchapp": {
       "watchface": true
     },
