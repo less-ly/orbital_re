@@ -1,8 +1,8 @@
 {
-  "name": "orbital_re",
-  "author": "MakeAwesomeHappen",
+  "name": "Orbital RE",
+  "author": "less-ly",
   "version": "1.0.0",
-  "keywords": ["pebble-app"],
+  "keywords": ["pebble-watchface"],
   "private": true,
   "dependencies": {},
   "pebble": {
@@ -10,7 +10,7 @@
       "rockyjs": "src/rocky/index.js",
       "pkjs": "src/pkjs/index.js"
     },
-    "displayName": "orbital_re",
+    "displayName": "Orbital RE",
     "uuid": "f1ecc2d2-103b-4a14-8944-11331504da48",
     "projectType": "rocky",
     "sdkVersion": "3",
