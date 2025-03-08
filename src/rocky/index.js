@@ -1,8 +1,8 @@
 var rocky = require('rocky');
 
-function drawOrbits(ctx, cx, cy, length) {
+function drawOrbits(ctx, cx, cy, orbitColor, length) {
   var step = 1;
-  ctx.strokeStyle = 'black';
+  ctx.strokeStyle = orbitColor;
 
   while (step < 4) {
     ctx.beginPath();
@@ -15,13 +15,13 @@ function fractionToRadian(fraction) {
   return fraction * 2 * Math.PI;
 }
 
-function drawPlanet(ctx, cx, cy, angle, length, color) {
+function drawPlanet(ctx, cx, cy, angle, length, planetColor) {
   // Find the points on the orbit
   var x2 = cx + Math.sin(angle) * length;
   var y2 = cy - Math.cos(angle) * length;
 
   // Actually draw a planet
-  ctx.fillstyle = color;
+  ctx.fillStyle = planetColor;
   ctx.rockyFillRadial(x2, y2, 0, 5, 0, 2 * Math.PI);
 };
 
@@ -80,10 +80,11 @@ rocky.on('draw', function(event) {
   // getDate() doesn't put a preceding zero into 1-digit dates 
 
 
-
-
   // set the color for the planets
-  var color = 'black';
+  var planetColor = 'black';
+
+  // set the color for the orbits
+  var orbitColor = 'black';
 
   // -
   // Calculate the "seconds hand", i.e. the 1st planet's angle
@@ -91,7 +92,7 @@ rocky.on('draw', function(event) {
   var secondsAngle = fractionToRadian(secondsFraction);
 
   // Draw the "seconds hand", i.e. the 1st planet from the center
-  drawPlanet(ctx, cx, cy, secondsAngle, minLength, color);
+  drawPlanet(ctx, cx, cy, secondsAngle, minLength, planetColor);
   // -
 
   // --
@@ -100,7 +101,7 @@ rocky.on('draw', function(event) {
   var minutesAngle = fractionToRadian(minutesFraction);
 
   // Draw the "minutes hand", i.e. the 2nd planet from the center
-  drawPlanet(ctx, cx, cy, minutesAngle, minLength * 2, color);
+  drawPlanet(ctx, cx, cy, minutesAngle, minLength * 2, planetColor);
   // --
 
   // --
@@ -109,11 +110,11 @@ rocky.on('draw', function(event) {
   var hoursAngle = fractionToRadian(hoursFraction);
 
   // Draw the "hours hand", i.e. the 3rd planet from the center
-  drawPlanet(ctx, cx, cy, hoursAngle, minLength * 3, color);
+  drawPlanet(ctx, cx, cy, hoursAngle, minLength * 3, planetColor);
   // ---
 
   // Draw orbits
-  drawOrbits(ctx, cx, cy, minLength);
+  drawOrbits(ctx, cx, cy, orbitColor, minLength);
 
 });
 
